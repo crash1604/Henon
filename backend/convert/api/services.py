@@ -1,5 +1,4 @@
 import requests
-from django.utils import timezone
 from .models import Currency
 
 API_URL = "https://api.frankfurter.app/"
@@ -22,3 +21,4 @@ def get_or_create_currency():
     Currency.objects.bulk_create(currency_objects)
 
     return Currency.objects.all()
+
