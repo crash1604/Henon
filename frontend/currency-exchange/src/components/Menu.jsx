@@ -3,7 +3,7 @@ import React from 'react';
 
 function Menu({ selectedOption, setSelectedOption }) {
   return (
-    <aside className="w-1/4 p-4 bg-white shadow">
+    <aside className="w-full md:w-1/4 p-4 bg-white shadow md:h-screen">
       <ul className="space-y-2">
         <li>
           <button
