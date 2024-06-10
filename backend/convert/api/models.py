@@ -1,9 +1,8 @@
 from django.db import models
-from django.core.validators import MinLengthValidator,MaxLengthValidator
-from django.db.models import F, Q, Value, CharField, FloatField, CheckConstraint, ExpressionWrapper
+from django.core.validators import MinLengthValidator, MaxLengthValidator
+from django.db.models import F, Q, CheckConstraint
 from django.utils import timezone
 
-# Create your models here.
 class Currency(models.Model):
     code = models.CharField(
         max_length=3,
@@ -25,14 +24,11 @@ class ExchangeRate(models.Model):
     class Meta:
         constraints = [
             CheckConstraint(
-                check=~Q(base_currency=models.F('target_currency')), 
+                check=~Q(base_currency=F('target_currency')), 
                 name='base_currency_not_equal_target_currency'
-                ),
+            ),
             CheckConstraint(
-                check=Q(date__gte=ExpressionWrapper(
-                    timezone.now() - timezone.timedelta(days=365*2),
-                    output_field=CharField()
-                )),
+                check=Q(date__gte=timezone.now().date() - timezone.timedelta(days=365*2)),
                 name='date_check'
             )
         ]

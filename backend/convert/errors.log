@@ -1,0 +1,24 @@
+Internal Server Error: /api/convert/USD/to/CAD
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/utils/deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/middleware/common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/middleware/common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/convert/USD/to/CAD/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+"POST /api/convert/USD/to/CAD HTTP/1.1" 500 64155
+Internal Server Error: /api/currencies
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/utils/deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/middleware/common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/middleware/common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/currencies/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+"POST /api/currencies HTTP/1.1" 500 64027
