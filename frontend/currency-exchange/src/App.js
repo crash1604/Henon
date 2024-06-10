@@ -11,11 +11,14 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <Header />
-      <Menu selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+      <div className="flex">
+        <Menu selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
         <main className="flex-grow p-4">
           {selectedOption === 'Convert' && <Convert />}
           {selectedOption === 'History' && <History />}
         </main>
+      </div>
+
     </div>
   );
 }
