@@ -3,11 +3,11 @@ import React from 'react';
 
 function Menu({ selectedOption, setSelectedOption }) {
   return (
-    <aside className="w-full md:w-1/4 p-4 bg-white shadow md:h-screen">
+    <aside className="w-full md:w-1/6 p-4 bg-white rounded-2xl shadow md:h-screen">
       <ul className="space-y-2">
         <li>
           <button
-            className={`w-full text-left p-2 rounded ${selectedOption === 'Convert' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            className={`w-full text-left p-4 rounded-3xl ${selectedOption === 'Convert' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
             onClick={() => setSelectedOption('Convert')}
           >
             Convert
@@ -15,7 +15,7 @@ function Menu({ selectedOption, setSelectedOption }) {
         </li>
         <li>
           <button
-            className={`w-full text-left p-2 rounded ${selectedOption === 'History' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            className={`w-full text-left p-4 rounded-3xl ${selectedOption === 'History' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
             onClick={() => setSelectedOption('History')}
           >
             History

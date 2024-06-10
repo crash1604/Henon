@@ -10,7 +10,7 @@ function Convert() {
   };
 
   return (
-    <div className="bg-white p-4 rounded shadow">
+    <div className="bg-white p-4 md:h-screen rounded-2xl shadow">
       <h2 className="text-2xl font-bold mb-4">Convert</h2>
       <input
         type="text"
