@@ -19,7 +19,11 @@ const DataGrid = () => {
       "2022-01-05": { "CAD": 1.2721 },
       "2022-01-06": { "CAD": 1.2772 },
       "2022-01-07": { "CAD": 1.2723 },
-      // ... more data here
+      "2022-01-07": { "CAD": 1.2723 },
+      "2022-01-07": { "CAD": 1.2723 },
+      "2022-01-07": { "CAD": 1.2723 },
+      "2022-01-07": { "CAD": 1.2723 },
+      "2022-01-07": { "CAD": 1.2723 },
       "2022-12-30": { "CAD": 1.3538 }
     }
   };
@@ -29,7 +33,7 @@ const DataGrid = () => {
     const transformedData = Object.keys(data.rates).map((date, index, dates) => {
       const currentRate = data.rates[date].CAD;
       const previousRate = index > 0 ? data.rates[dates[index - 1]].CAD : null;
-      const difference = previousRate !== null ? currentRate - previousRate : null;
+      const difference = (previousRate !== null ? currentRate - previousRate : null);
       return {
         date,
         CAD: currentRate,
