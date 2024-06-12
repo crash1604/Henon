@@ -31,19 +31,24 @@ const DataGrid = ({ historicalData, toCurrency }) => {
       headerName: "Difference",
       field: "difference",
       flex: 1,
+      cellClass: params => {
+        if (params.value > 0) {
+          return 'flex items-center text-green-500';
+        } else if (params.value < 0) {
+          return 'flex items-center text-red-500';
+        } else {
+          return 'flex items-center text-blue-500';
+        }
+      },
       cellRendererFramework: (params) => {
         if (params.value === null) {
           return '--';
         }
         const formattedDifference = Number(params.value).toFixed(4);  // Format to 4 decimal places
-        const isPositive = params.value > 0;
-        const isNegative = params.value < 0;
         return (
-          <span className={`flex items-center ${isPositive ? 'text-green-500' : isNegative ? 'text-red-500' : ''}`}>
-            {formattedDifference}
-            {isPositive && <FaArrowUp className="ml-1" />}
-            {isNegative && <FaArrowDown className="ml-1" />}
-          </span>
+          <span>
+          {formattedDifference}
+        </span>
         );
       }
     }
