@@ -13,26 +13,26 @@ This Dashboard application utilizes the Frankfurter API to retrieve historical c
 
 ## Available Scripts
 
-In the project directory, you can run:
+create a virtual environement
+in this case venv is `Henon`
 
-### `npm start`
+install `requirements.txt` using virtual env
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+use `python3 manage.py makemigrations`
+then `python3 manage.py migrate`
+then `python3 manage.py createsuperuser`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Runserver with ```python3 manage.py runserver```
 
+## Endpoints
+localhost:8000/
+admin/
+api/ currencies/ [name='currencies']
+api/ current/<str:base_currency>/to/<str:target_currency>/ [name='convert_currency']
+api/ convert/<str:base_currency>/to/<str:target_currency>/ [name='convert_currency']
+api/ history/<str:base_currency>/to/<str:target_currency>/ [name='history_all_time']
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Note: backend is not limited to 3 currencies
 
 ## Components
 
