@@ -39,15 +39,15 @@ Note: backend is not limited to 3 currencies
 ## Components
 
 convert
-*|-> settings.py
-*|-> urls.py
+* |-> settings.py
+* |-> urls.py
 api
-*|-> admin.py
-*|-> models.py
-*|-> serializers.py
-*|-> services.py
-*|-> urls.py
-*|-> views.py
+* |-> admin.py
+* |-> models.py
+* |-> serializers.py
+* |-> services.py
+* |-> urls.py
+* |-> views.py
 
 #### convert/setting.py
 - contains settings for django project
