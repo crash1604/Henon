@@ -164,6 +164,7 @@ def get_all_time_history(base_currency, target_currency):
         ).order_by('date')
 
         if history.exists():
+            print(history)
             return ExchangeRateSerializer(history, many=True).data
 
         # Define the start and end dates

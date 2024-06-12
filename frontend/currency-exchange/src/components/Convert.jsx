@@ -15,20 +15,36 @@ const Convert = ({ fromCurrency, toCurrency, conversionRate }) => {
   const [amount, setAmount] = useState('');
   const [result, setResult] = useState(0);
 
-  const handleConvert = () => {
-    if (!conversionRate || !amount) { 
-        setResult(0);
-        return ;
-    } 
-    const convertedAmount = amount * conversionRate;
-    setResult(convertedAmount.toFixed(4));
+  const handleConvert = async () => {
+    if (!amount) {
+      setResult(0);
+      return;
+    }
 
-   
+    try {
+      const response = await fetch(`http://localhost:8000/api/convert/${fromCurrency}/to/${toCurrency}/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ amount: parseFloat(amount) }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      setResult(data.converted_amount.toFixed(4));
+    } catch (error) {
+      console.error('Failed to convert currency:', error);
+      setResult(0);
+    }
   };
 
   useEffect(() => {
     handleConvert();
-  }, [amount, conversionRate]);
+  }, [amount]);
 
   return (
     <div className="bg-white p-4 mt-2 md:h-screen rounded-2xl shadow">
@@ -42,7 +58,6 @@ const Convert = ({ fromCurrency, toCurrency, conversionRate }) => {
         onChange={(e) => setAmount(e.target.value)}
       />
       <div className="text-2xl p-4">
-
         {result ? `${toCurrency}: ${result}` : 'Enter amount and select currencies'}
       </div>
     </div>
