@@ -6,9 +6,14 @@ const Convert = ({ fromCurrency, toCurrency, conversionRate }) => {
   const [result, setResult] = useState(0);
 
   const handleConvert = () => {
-    if (!conversionRate || !amount) return;
+    if (!conversionRate || !amount) { 
+        setResult(0);
+        return ;
+    } 
     const convertedAmount = amount * conversionRate;
     setResult(convertedAmount);
+
+   
   };
 
   useEffect(() => {
@@ -20,13 +25,14 @@ const Convert = ({ fromCurrency, toCurrency, conversionRate }) => {
       <h2 className="text-2xl font-bold mb-4">Convert</h2>
       <span>{fromCurrency}</span>
       <input
-        type="text"
+        type="number"
         className="p-2 border rounded w-full"
         placeholder="Amount"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
       />
       <div className="text-2xl p-4">
+
         {result ? `${toCurrency}: ${result}` : 'Enter amount and select currencies'}
       </div>
     </div>

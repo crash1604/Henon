@@ -1,59 +1,61 @@
 // src/components/DataGrid.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
-const DataGrid = () => {
+const DataGrid = ({ fromCurrency, toCurrency }) => {
   const [rowData, setRowData] = useState([]);
-
-  const data = {
-    "amount": 1,
-    "base": "USD",
-    "start_date": "2022-01-03",
-    "end_date": "2022-12-30",
-    "rates": {
-      "2022-01-03": { "CAD": 1.2699 },
-      "2022-01-04": { "CAD": 1.2751 },
-      "2022-01-05": { "CAD": 1.2721 },
-      "2022-01-06": { "CAD": 1.2772 },
-      "2022-01-07": { "CAD": 1.2723 },
-      "2022-01-07": { "CAD": 1.2723 },
-      "2022-01-07": { "CAD": 1.2723 },
-      "2022-01-07": { "CAD": 1.2723 },
-      "2022-01-07": { "CAD": 1.2723 },
-      "2022-01-07": { "CAD": 1.2723 },
-      "2022-12-30": { "CAD": 1.3538 }
-    }
-  };
+  const gridRef = useRef();
 
   useEffect(() => {
-    // Transform the data into a format suitable for ag-Grid
-    const transformedData = Object.keys(data.rates).map((date, index, dates) => {
-      const currentRate = data.rates[date].CAD;
-      const previousRate = index > 0 ? data.rates[dates[index - 1]].CAD : null;
-      const difference = (previousRate !== null ? currentRate - previousRate : null);
-      return {
-        date,
-        CAD: currentRate,
-        difference
-      };
-    });
-    setRowData(transformedData);
-  }, []);
+    const fetchHistoricalData = async () => {
+      if (fromCurrency === toCurrency) {
+        setRowData([]);
+        return;
+      }
+
+      const endDate = new Date().toISOString().split('T')[0];
+      const startDate = new Date();
+      startDate.setFullYear(startDate.getFullYear() - 2);
+      const formattedStartDate = startDate.toISOString().split('T')[0];
+
+      try {
+        const response = await fetch(`https://api.frankfurter.app/${formattedStartDate}..${endDate}?from=${fromCurrency}&to=${toCurrency}`);
+        const data = await response.json();
+        // Transform the data into a format suitable for ag-Grid
+        const transformedData = Object.keys(data.rates).map((date, index, dates) => {
+          const currentRate = data.rates[date][toCurrency];
+          const previousRate = index > 0 ? data.rates[dates[index - 1]][toCurrency] : null;
+          const difference = previousRate !== null ? currentRate - previousRate : null;
+          return {
+            date,
+            [toCurrency]: currentRate,
+            difference
+          };
+        });
+        setRowData(transformedData);
+      } catch (error) {
+        console.error('Failed to fetch historical data:', error);
+      }
+    };
+
+    fetchHistoricalData();
+  }, [fromCurrency, toCurrency]);
 
   const columnDefs = [
-    { headerName: "Date", field: "date", sortable: true, filter: true },
-    { headerName: "CAD", field: "CAD", sortable: true, filter: true },
+    { headerName: "Date", field: "date", sortable: true, filter: true, flex: 1 },
+    { headerName: toCurrency, field: toCurrency, sortable: true, filter: true, flex: 1 },
     {
       headerName: "Difference",
       field: "difference",
+      flex: 1,
       cellRendererFramework: (params) => {
         if (params.value === null) {
           return '--';
         }
-        const formattedDifference = params.value.toFixed(2);
+        const formattedDifference = Number(params.value).toFixed(4);  // Format to 4 decimal places
         const isPositive = params.value > 0;
         const isNegative = params.value < 0;
         return (
@@ -67,13 +69,28 @@ const DataGrid = () => {
     }
   ];
 
+  // Automatically resize columns when data is loaded
+  useEffect(() => {
+    if (gridRef.current && gridRef.current.api) {
+      gridRef.current.api.sizeColumnsToFit();
+    }
+  }, [rowData]);
+
   return (
     <div className="ag-theme-alpine" style={{ height: '500px', width: '100%' }}>
       <AgGridReact
+        ref={gridRef}
         rowData={rowData}
         columnDefs={columnDefs}
+        domLayout="autoHeight"
+        defaultColDef={{ resizable: true }}
         pagination={true}
         paginationPageSize={20}
+        onGridReady={() => {
+          if (gridRef.current && gridRef.current.api) {
+            gridRef.current.api.sizeColumnsToFit();
+          }
+        }}
       />
     </div>
   );
