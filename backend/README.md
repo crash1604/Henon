@@ -25,12 +25,14 @@ then `python3 manage.py createsuperuser`
 ### Runserver with ```python3 manage.py runserver```
 
 ## Endpoints
-localhost:8000/
-admin/
-api/ currencies/ [name='currencies']
-api/ current/<str:base_currency>/to/<str:target_currency>/ [name='convert_currency']
-api/ convert/<str:base_currency>/to/<str:target_currency>/ [name='convert_currency']
-api/ history/<str:base_currency>/to/<str:target_currency>/ [name='history_all_time']
+
+`localhost:8000/`
+
+-    `admin/`
+-    `api/ currencies/ [name='currencies']`
+-    `api/ current/<str:base_currency>/to/<str:target_currency>/ [name='convert_currency']`
+-    `api/ convert/<str:base_currency>/to/<str:target_currency>/ [name='convert_currency']`
+-    `api/ history/<str:base_currency>/to/<str:target_currency>/ [name='history_all_time']`
 
 Note: backend is not limited to 3 currencies
 
