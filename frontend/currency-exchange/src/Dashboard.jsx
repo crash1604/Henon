@@ -78,7 +78,7 @@ function Dashboard() {
             />
           )}
           {selectedOption === 'History' && (
-            <History fromCurrency={fromCurrency} toCurrency={toCurrency} />
+            <History fromCurrency={fromCurrency} toCurrency={toCurrency} historicalData={historicalData} />
           )}
         </main>
       </div>

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import DataGrid from './DataGrid';
 import Chart from './Chart';
 
-function History({ fromCurrency, toCurrency }) {
+function History({ fromCurrency, toCurrency, historicalData }) {
   const [activeTab, setActiveTab] = useState('Data');
 
   return (
@@ -25,7 +25,7 @@ function History({ fromCurrency, toCurrency }) {
       </div>
       <div className="overflow-x-auto">
         {activeTab === 'Data' && <DataGrid fromCurrency={fromCurrency} toCurrency={toCurrency} />}
-        {activeTab === 'Chart' && <Chart />}
+        {activeTab === 'Chart' && <Chart rates={historicalData} toCurrency={toCurrency} />}
       </div>
     </div>
   );
