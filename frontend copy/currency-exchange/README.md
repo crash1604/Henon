@@ -4,7 +4,8 @@ Frontend for currency exchange tracker app which uses React and Tailwind along w
 
 ## Link
 
-[https://fastidious-blancmange-90e3cf.netlify.app/](https://fastidious-blancmange-90e3cf.netlify.app/)
+[https://henon-chanakya.netlify.app/](https://henon-chanakya.netlify.app/)
+
 
 ## Available Scripts
 
