@@ -27,7 +27,7 @@ This Dashboard application utilizes the Frankfurter API to retrieve historical c
 
 1. **Version Control:** please visit www.github.com/crash1604
 2. **Short Video:** [pending]
-3. **Deployment:** [https://fastidious-blancmange-90e3cf.netlify.app/](https://fastidious-blancmange-90e3cf.netlify.app/)
+3. **Deployment:** [https://henon-chanakya.netlify.app/](https://henon-chanakya.netlify.app/)
 please note that due to platform restrictions the frontend is directly accessing the data on frankfurter api
 
 ## Resources
