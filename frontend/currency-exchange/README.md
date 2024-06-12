@@ -2,9 +2,12 @@
 
 Frontend for currency exchange tracker app which uses React and Tailwind along with frankfurter api. the code on github is connecting with the backend as per the requirements but the frontend hosted on netlify connects directly to frankfurter api.
 
+
+* This application connects to a django backend 
+
 ## Link
 
-[https://fastidious-blancmange-90e3cf.netlify.app/](https://fastidious-blancmange-90e3cf.netlify.app/)
+[https://henon-chanakya.netlify.app/](https://henon-chanakya.netlify.app/))
 
 ## Available Scripts
 
