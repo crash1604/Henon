@@ -14,7 +14,7 @@ const DataGrid = ({ historicalData, toCurrency }) => {
     const transformedData = Object.keys(historicalData).map((date, index, dates) => {
       const currentRate = historicalData[date][toCurrency];
       const previousRate = index > 0 ? historicalData[dates[index - 1]][toCurrency] : null;
-      const difference = previousRate !== null ? currentRate - previousRate : null;
+      const difference = previousRate !== null ? parseFloat((currentRate - previousRate).toFixed(4)) : null;
       return {
         date,
         [toCurrency]: currentRate,
