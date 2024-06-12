@@ -11,7 +11,7 @@ const Convert = ({ fromCurrency, toCurrency, conversionRate }) => {
         return ;
     } 
     const convertedAmount = amount * conversionRate;
-    setResult(convertedAmount);
+    setResult(convertedAmount.toFixed(4));
 
    
   };
