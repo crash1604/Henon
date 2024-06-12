@@ -1,4 +1,14 @@
-// src/components/Menu.jsx
+// @author: Chanakya Sharma
+// edited: 12th June 2024
+// Location: src/components/Menu.jsx
+// Function:
+// This file component serves as a handler for the menu options
+// and is also responsible for rendering the content conditionally
+// in the main section. The conditional rendering is handled by
+//  the props passed down from the upper Dashboard component
+// Constraint:
+// Only supports 2 Menu Options as per the scope
+
 import React from 'react';
 
 function Menu({ selectedOption, setSelectedOption }) {

@@ -1,4 +1,13 @@
-// src/components/Chart.jsx
+// @author: Chanakya Sharma
+// edited: 12th June 2024
+// Location: src/components/Chart.jsx
+// Function:
+// This file component is responsible for rendering Chart 
+// data which is received from History component and filtered
+//  by MiniHeader which holds FIltering date option
+// Constraint:
+// N.A.
+
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';

@@ -1,4 +1,13 @@
-// src/Dashboard.jsx
+// @author: Chanakya Sharma
+// edited: 12th June 2024
+// Location: src/Dashboard.jsx
+// Function:
+// This file component serves as a placeholder for Holding state of  
+// the entire app which aids in props drilling. Also holds all components
+// that are rendered in the application
+// Constraint:
+// Only gets upto 2 years of historic data
+
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Menu from './components/Menu';

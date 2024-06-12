@@ -1,4 +1,11 @@
-// src/components/Header.jsx
+// @author: Chanakya Sharma
+// edited: 12th June 2024
+// Location: src/components/Header.jsx
+// Function:
+// This file component is responsible for rendering the
+// header of the web page
+// Constraint:
+// N.A.
 import React from 'react';
 
 function Header() {

@@ -1,4 +1,14 @@
-// src/components/Convert.jsx
+// @author: Chanakya Sharma
+// edited: 12th June 2024
+// Location: src/components/Convert.jsx
+// Function:
+// This file component is responsible for converting
+// a given amount of "fromCurrency" and returns the
+// converted amount in "toCurrency" which is passed 
+// by the props from Dashboard component
+// Constraint:
+// Supports conversion upto 4 decimal digits
+
 import React, { useState, useEffect } from 'react';
 
 const Convert = ({ fromCurrency, toCurrency, conversionRate }) => {

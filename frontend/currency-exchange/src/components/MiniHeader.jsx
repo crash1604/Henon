@@ -1,4 +1,14 @@
-// src/components/MiniHeader.jsx
+// @author: Chanakya Sharma
+// edited: 12th June 2024
+// Location: src/components/MiniHeader.jsx
+// Function:
+// This file component serves as a placeholder for Setting base 
+// currency and target currency. This component also calls frankfurter
+// api to get latest rates between 3 api's. This component also 
+// implements swap button functionality
+// Constraint:
+// Only supports 3 Currencies as specified by document
+
 import React from 'react';
 
 const MiniHeader = ({ fromCurrency, setFromCurrency, toCurrency, setToCurrency, conversionRate }) => {

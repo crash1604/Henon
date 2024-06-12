@@ -1,4 +1,15 @@
-// src/components/DataGrid.jsx
+// @author: Chanakya Sharma
+// edited: 12th June 2024
+// Location: src/components/DataGrid.jsx
+// Function:
+// This file component is responsible for rendering
+// data grid component which received data from props
+// historical data gained from the frankfurter api
+// Uses AG grid library to display data which is filtered
+// by history component for better UX
+// Constraint:
+// N.A.
+
 import React, { useState, useEffect, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';

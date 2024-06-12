@@ -1,4 +1,17 @@
-// src/components/History.jsx
+// @author: Chanakya Sharma
+// edited: 12th June 2024
+// Location: src/components/History.jsx
+// Function:
+// This file component is responsible for conditional
+// render of data grid and chart plotted against the 
+// historical data gained from the frankfurter api
+// Implements Datepicker to implement date filters
+// Additionally it is also responsible for passing
+// props to DataGrid and Chart component with filtered
+// data. 
+// Constraint:
+// N.A.
+
 import React, { useState, useEffect } from 'react';
 import DataGrid from './DataGrid';
 import Chart from './Chart';
