@@ -1,5 +1,5 @@
 // src/components/History.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DataGrid from './DataGrid';
 import Chart from './Chart';
 import DatePicker from 'react-datepicker';
@@ -7,8 +7,24 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function History({ fromCurrency, toCurrency, historicalData }) {
   const [activeTab, setActiveTab] = useState('Data');
-  const [startDate, setStartDate] = useState(new Date(new Date().setFullYear(new Date().getFullYear() - 1)));
-  const [endDate, setEndDate] = useState(new Date());
+  
+  // Retrieve the saved dates from localStorage or set defaults
+  const getInitialDate = (key, defaultDate) => {
+    const savedDate = localStorage.getItem(key);
+    return savedDate ? new Date(savedDate) : defaultDate;
+  };
+
+  const [startDate, setStartDate] = useState(getInitialDate('startDate', new Date(new Date().setFullYear(new Date().getFullYear() - 1))));
+  const [endDate, setEndDate] = useState(getInitialDate('endDate', new Date()));
+
+  // Save dates to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('startDate', startDate.toISOString());
+  }, [startDate]);
+
+  useEffect(() => {
+    localStorage.setItem('endDate', endDate.toISOString());
+  }, [endDate]);
 
   const filteredData = Object.keys(historicalData)
     .filter(date => {
