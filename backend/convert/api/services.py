@@ -163,7 +163,7 @@ def get_all_time_history(base_currency, target_currency):
             target_currency__code=target_currency
         ).order_by('date')
 
-        if history.exists():
+        if len(history)>3:
             print(history)
             return ExchangeRateSerializer(history, many=True).data
 

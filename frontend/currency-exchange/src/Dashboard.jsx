@@ -14,6 +14,8 @@ import Menu from './components/Menu';
 import Convert from './components/Convert';
 import History from './components/History';
 import MiniHeader from './components/MiniHeader';
+import { convertToKeyValuePairs } from './utils/convert';
+
 
 function Dashboard() {
   const [selectedOption, setSelectedOption] = useState('Convert');
@@ -55,9 +57,11 @@ function Dashboard() {
       const formattedStartDate = startDate.toISOString().split('T')[0];
 
       try {
-        const response = await fetch(`https://api.frankfurter.app/${formattedStartDate}..${endDate}?from=${fromCurrency}&to=${toCurrency}`);
+        const response = await fetch(`http://localhost:8000/api/history/${fromCurrency}/to/${toCurrency}/`);
         const data = await response.json();
-        setHistoricalData(data.rates);
+        const convertedRates = convertToKeyValuePairs(data);
+        console.log(`APi converted is ${convertedRates}`)
+        setHistoricalData(convertedRates);
       } catch (error) {
         console.error('Failed to fetch historical data:', error);
       }
