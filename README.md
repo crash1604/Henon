@@ -26,7 +26,7 @@ This Dashboard application utilizes the Frankfurter API to retrieve historical c
 ## Submission Guidelines
 
 1. **Version Control:** please visit www.github.com/crash1604
-2. **Short Video:** [pending]
+2. **Short Video:** [VIdeo Link](https://github.com/crash1604/Henon/blob/main/media/2024-06-12_18-35-29.mp4)
 3. **Deployment:** [https://henon-chanakya.netlify.app/](https://henon-chanakya.netlify.app/)
 please note that due to platform restrictions the frontend is directly accessing the data on frankfurter api
 
@@ -37,6 +37,10 @@ please note that due to platform restrictions the frontend is directly accessing
 - [Frankfurter API Documentation](https://www.frankfurter.app/docs/)
 
 ---
-
+<video width="320" height="240" controls>
+  <source src="https://github.com/crash1604/Henon/blob/main/media/2024-06-12_18-35-29.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+---
 @Author: Chanakya Sharma
 @Github: www.github.com/crash1604
