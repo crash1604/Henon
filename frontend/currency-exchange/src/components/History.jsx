@@ -2,9 +2,23 @@
 import React, { useState } from 'react';
 import DataGrid from './DataGrid';
 import Chart from './Chart';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function History({ fromCurrency, toCurrency, historicalData }) {
   const [activeTab, setActiveTab] = useState('Data');
+  const [startDate, setStartDate] = useState(new Date(new Date().setFullYear(new Date().getFullYear() - 1)));
+  const [endDate, setEndDate] = useState(new Date());
+
+  const filteredData = Object.keys(historicalData)
+    .filter(date => {
+      const dateObj = new Date(date);
+      return dateObj >= startDate && dateObj <= endDate;
+    })
+    .reduce((obj, key) => {
+      obj[key] = historicalData[key];
+      return obj;
+    }, {});
 
   return (
     <div className="bg-white p-4 md:h-screen rounded-2xl shadow">
@@ -22,10 +36,37 @@ function History({ fromCurrency, toCurrency, historicalData }) {
         >
           Chart
         </button>
+        <div className="flex-grow" />
+        <div className="flex items-center space-x-4">
+          <div>
+            <label className='p-2'>Start Date</label>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
+              dateFormat="yyyy-MM-dd"
+              className="border p-2 rounded"
+            />
+          </div>
+          <div>
+            <label className='p-2'>End Date</label>
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              dateFormat="yyyy-MM-dd"
+              className="border p-2 rounded"
+            />
+          </div>
+        </div>
       </div>
       <div className="overflow-x-auto">
-        {activeTab === 'Data' && <DataGrid fromCurrency={fromCurrency} toCurrency={toCurrency} />}
-        {activeTab === 'Chart' && <Chart rates={historicalData} toCurrency={toCurrency} />}
+        {activeTab === 'Data' && <DataGrid fromCurrency={fromCurrency} toCurrency={toCurrency} historicalData={filteredData} />}
+        {activeTab === 'Chart' && <Chart rates={filteredData} toCurrency={toCurrency} />}
       </div>
     </div>
   );
