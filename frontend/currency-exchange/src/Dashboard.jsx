@@ -30,9 +30,9 @@ function Dashboard() {
       }
       
       try {
-        const response = await fetch(`https://api.frankfurter.app/latest?from=${fromCurrency}&to=${toCurrency}`);
+        const response = await fetch(`http://localhost:8000/api/current/${fromCurrency}/to/${toCurrency}/`);
         const data = await response.json();
-        setConversionRate(data.rates[toCurrency]);
+        setConversionRate(data.rate);
       } catch (error) {
         setConversionRate(1);
         console.error('Failed to fetch conversion rate:', error);
