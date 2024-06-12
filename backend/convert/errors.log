@@ -22,3 +22,378 @@ Traceback (most recent call last):
     raise RuntimeError(
 RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/api/currencies/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
 "POST /api/currencies HTTP/1.1" 500 64027
+Internal Server Error: /api/current/CAD/to/USD/
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1099, in _validate_conn
+    conn.connect()
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 616, in connect
+    self.sock = sock = self._new_conn()
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x7fb7f802d910>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.frankfurter.app', port=443): Max retries exceeded with url: /latest?from=CAD&to=USD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb7f802d910>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/convert/api/views.py", line 14, in convert_currency_latest
+    conversion_result = convert_current_currency_service(base_currency,target_currency)
+  File "/Users/crash/Programs/Henon/backend/convert/api/services.py", line 65, in convert_current_currency_service
+    response = requests.get(url)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.frankfurter.app', port=443): Max retries exceeded with url: /latest?from=CAD&to=USD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb7f802d910>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)"))
+"GET /api/current/CAD/to/USD/ HTTP/1.1" 500 195929
+Internal Server Error: /api/current/CAD/to/USD/
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1099, in _validate_conn
+    conn.connect()
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 616, in connect
+    self.sock = sock = self._new_conn()
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x7fb7f800f2e0>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.frankfurter.app', port=443): Max retries exceeded with url: /latest?from=CAD&to=USD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb7f800f2e0>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/convert/api/views.py", line 14, in convert_currency_latest
+    conversion_result = convert_current_currency_service(base_currency,target_currency)
+  File "/Users/crash/Programs/Henon/backend/convert/api/services.py", line 65, in convert_current_currency_service
+    response = requests.get(url)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.frankfurter.app', port=443): Max retries exceeded with url: /latest?from=CAD&to=USD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb7f800f2e0>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)"))
+"GET /api/current/CAD/to/USD/ HTTP/1.1" 500 196065
+Internal Server Error: /api/current/CAD/to/USD/
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1099, in _validate_conn
+    conn.connect()
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 616, in connect
+    self.sock = sock = self._new_conn()
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x7fb7f8042d90>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.frankfurter.app', port=443): Max retries exceeded with url: /latest?from=CAD&to=USD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb7f8042d90>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/convert/api/views.py", line 14, in convert_currency_latest
+    conversion_result = convert_current_currency_service(base_currency,target_currency)
+  File "/Users/crash/Programs/Henon/backend/convert/api/services.py", line 65, in convert_current_currency_service
+    response = requests.get(url)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.frankfurter.app', port=443): Max retries exceeded with url: /latest?from=CAD&to=USD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb7f8042d90>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)"))
+"GET /api/current/CAD/to/USD/ HTTP/1.1" 500 196065
+Internal Server Error: /api/current/CAD/to/USD/
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1099, in _validate_conn
+    conn.connect()
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 616, in connect
+    self.sock = sock = self._new_conn()
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x7fb8000551f0>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.frankfurter.app', port=443): Max retries exceeded with url: /latest?from=CAD&to=USD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb8000551f0>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/convert/api/views.py", line 14, in convert_currency_latest
+    conversion_result = convert_current_currency_service(base_currency,target_currency)
+  File "/Users/crash/Programs/Henon/backend/convert/api/services.py", line 65, in convert_current_currency_service
+    response = requests.get(url)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.frankfurter.app', port=443): Max retries exceeded with url: /latest?from=CAD&to=USD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb8000551f0>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)"))
+"GET /api/current/CAD/to/USD/ HTTP/1.1" 500 195928
+Internal Server Error: /api/current/CAD/to/USD/
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1099, in _validate_conn
+    conn.connect()
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 616, in connect
+    self.sock = sock = self._new_conn()
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x7fb83929d280>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.frankfurter.app', port=443): Max retries exceeded with url: /latest?from=CAD&to=USD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb83929d280>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/convert/api/views.py", line 14, in convert_currency_latest
+    conversion_result = convert_current_currency_service(base_currency,target_currency)
+  File "/Users/crash/Programs/Henon/backend/convert/api/services.py", line 65, in convert_current_currency_service
+    response = requests.get(url)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/crash/Programs/Henon/backend/henon/lib/python3.9/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.frankfurter.app', port=443): Max retries exceeded with url: /latest?from=CAD&to=USD (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fb83929d280>: Failed to resolve 'api.frankfurter.app' ([Errno 8] nodename nor servname provided, or not known)"))
+"GET /api/current/CAD/to/USD/ HTTP/1.1" 500 195929
