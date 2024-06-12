@@ -8,7 +8,7 @@ const MiniHeader = ({ fromCurrency, setFromCurrency, toCurrency, setToCurrency, 
   };
 
   return (
-    <div className="hidden md:flex items-center space-x-2">
+    <div className="hidden md:flex items-center m-4 space-x-2">
       <select
         className="bg-white text-black p-2 rounded-3xl"
         value={fromCurrency}

@@ -5,44 +5,24 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 
-const DataGrid = ({ fromCurrency, toCurrency }) => {
+const DataGrid = ({ historicalData, toCurrency }) => {
   const [rowData, setRowData] = useState([]);
   const gridRef = useRef();
 
   useEffect(() => {
-    const fetchHistoricalData = async () => {
-      if (fromCurrency === toCurrency) {
-        setRowData([]);
-        return;
-      }
-
-      const endDate = new Date().toISOString().split('T')[0];
-      const startDate = new Date();
-      startDate.setFullYear(startDate.getFullYear() - 2);
-      const formattedStartDate = startDate.toISOString().split('T')[0];
-
-      try {
-        const response = await fetch(`https://api.frankfurter.app/${formattedStartDate}..${endDate}?from=${fromCurrency}&to=${toCurrency}`);
-        const data = await response.json();
-        // Transform the data into a format suitable for ag-Grid
-        const transformedData = Object.keys(data.rates).map((date, index, dates) => {
-          const currentRate = data.rates[date][toCurrency];
-          const previousRate = index > 0 ? data.rates[dates[index - 1]][toCurrency] : null;
-          const difference = previousRate !== null ? currentRate - previousRate : null;
-          return {
-            date,
-            [toCurrency]: currentRate,
-            difference
-          };
-        });
-        setRowData(transformedData);
-      } catch (error) {
-        console.error('Failed to fetch historical data:', error);
-      }
-    };
-
-    fetchHistoricalData();
-  }, [fromCurrency, toCurrency]);
+    // Transform the data into a format suitable for ag-Grid
+    const transformedData = Object.keys(historicalData).map((date, index, dates) => {
+      const currentRate = historicalData[date][toCurrency];
+      const previousRate = index > 0 ? historicalData[dates[index - 1]][toCurrency] : null;
+      const difference = previousRate !== null ? currentRate - previousRate : null;
+      return {
+        date,
+        [toCurrency]: currentRate,
+        difference
+      };
+    });
+    setRowData(transformedData);
+  }, [historicalData, toCurrency]);
 
   const columnDefs = [
     { headerName: "Date", field: "date", sortable: true, filter: true, flex: 1 },
