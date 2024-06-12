@@ -39,43 +39,43 @@ Note: backend is not limited to 3 currencies
 ## Components
 
 convert
-|-> settings.py
-|-> urls.py
+*|-> settings.py
+*|-> urls.py
 api
-|-> admin.py
-|-> models.py
-|-> serializers.py
-|-> services.py
-|-> urls.py
-|-> views.py
+*|-> admin.py
+*|-> models.py
+*|-> serializers.py
+*|-> services.py
+*|-> urls.py
+*|-> views.py
 
 #### convert/setting.py
-contains settings for django project
+- contains settings for django project
 
 #### convert/urls.py
-original urls handler file which has paths for API endpoints
+- original urls handler file which has paths for API endpoints
 
 #### api/admin.py
-registers models/database tables to django application
+- registers models/database tables to django application
 
 #### api/models.py
-contains the tables for data store which includes current and historic data for exchange rates and a table of all currencies tracked by frankfurter api
+- contains the tables for data store which includes current and historic data for exchange rates and a table of all currencies tracked by frankfurter api
 
 #### api/serializers.py
-creates a uniformity when sending or receiving data from json to python objects or vice versa
+- creates a uniformity when sending or receiving data from json to python objects or vice versa
 
 #### api/services.py
-handles the logic for frankfurterapi calls which stores or fetches data accordingly
+- handles the logic for frankfurterapi calls which stores or fetches data accordingly
 
 #### api/urls.py
-handles the routing of endpoints of all api calls and deicdes which views to use at an endpoint
+- handles the routing of endpoints of all api calls and deicdes which views to use at an endpoint
 
 #### api/views.py
-Has functions which are responsible for receiving and sending data to the frontend api requests
+- Has functions which are responsible for receiving and sending data to the frontend api requests
 
 ## Dependencies
 
-mentioned in requirements.txt
+- mentioned in requirements.txt
 
 ## Features for future
 
