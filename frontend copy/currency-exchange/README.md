@@ -55,6 +55,8 @@ Interface is kept intuitive and avoid repitition
 * Frankfurter API
 * LocalStorage persistence
 
+- Check package.json
+
 ## Features for future
 
 * More currencies and adjustment for high scalibility
