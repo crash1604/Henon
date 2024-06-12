@@ -37,3 +37,6 @@ please note that due to platform restrictions the frontend is directly accessing
 - [Frankfurter API Documentation](https://www.frankfurter.app/docs/)
 
 ---
+
+@Author: Chanakya Sharma
+@Github: www.github.com/crash1604
