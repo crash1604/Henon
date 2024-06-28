@@ -9,9 +9,25 @@
 // Constraint:
 // Only supports 3 Currencies as specified by document
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const MiniHeader = ({ fromCurrency, setFromCurrency, toCurrency, setToCurrency, conversionRate }) => {
+  const [currencies, setCurrencies] = useState({});
+
+  useEffect(() => {
+    const fetchCurrencies = async () => {
+      try {
+        const response = await fetch('https://api.frankfurter.app/currencies');
+        const data = await response.json();
+        setCurrencies(data);
+      } catch (error) {
+        console.error('Error fetching currencies:', error);
+      }
+    };
+
+    fetchCurrencies();
+  }, []);
+
   const handleSwap = () => {
     setFromCurrency(toCurrency);
     setToCurrency(fromCurrency);
@@ -24,19 +40,25 @@ const MiniHeader = ({ fromCurrency, setFromCurrency, toCurrency, setToCurrency, 
         value={fromCurrency}
         onChange={(e) => setFromCurrency(e.target.value)}
       >
-        <option value="USD">USD</option>
-        <option value="CAD">CAD</option>
-        <option value="EUR">EUR</option>
+        {Object.entries(currencies).map(([code, name]) => (
+          <option key={code} value={code}>
+            {code} - {name}
+          </option>
+        ))}
       </select>
-      <button className="bg-blue-500 text-white p-2 rounded-3xl transition-all duration-400" onClick={handleSwap}>Swap</button>
+      <button className="bg-blue-500 text-white p-2 rounded-3xl transition-all duration-400" onClick={handleSwap}>
+        Swap
+      </button>
       <select
         className="bg-white text-black text-xl font-semibold p-2 rounded-3xl"
         value={toCurrency}
         onChange={(e) => setToCurrency(e.target.value)}
       >
-        <option value="USD">USD</option>
-        <option value="CAD">CAD</option>
-        <option value="EUR">EUR</option>
+        {Object.entries(currencies).map(([code, name]) => (
+          <option key={code} value={code}>
+            {code} - {name}
+          </option>
+        ))}
       </select>
       <span className="ml-2 text-lg font-medium">
         {conversionRate ? `1 ${fromCurrency} = ${conversionRate} ${toCurrency}` : 'Loading...'}

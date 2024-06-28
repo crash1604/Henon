@@ -36,12 +36,14 @@ const DataGrid = ({ historicalData, toCurrency }) => {
   }, [historicalData, toCurrency]);
 
   const columnDefs = [
-    { headerName: "Date", field: "date", sortable: true, filter: true, flex: 1 },
-    { headerName: toCurrency, field: toCurrency, sortable: true, filter: true, flex: 1 },
+    { headerName: "Date", field: "date", sortable: true, filter: false, flex: 1, sort:'desc' },
+    { headerName: toCurrency, field: toCurrency, sortable: false, filter: false, flex: 1 },
     {
       headerName: "Difference",
       field: "difference",
       flex: 1,
+      sortable:false,
+      filter:false,
       cellClass: params => {
         if (params.value > 0) {
           return 'flex items-center text-green-500';
