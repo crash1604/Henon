@@ -54,13 +54,13 @@ function History({ fromCurrency, toCurrency, historicalData }) {
       <h2 className="text-2xl font-bold mb-4">History</h2>
       <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-4">
         <button
-          className={`p-4 rounded-3xl transition-colors duration-400 ${activeTab === 'Data' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          className={`p-4 rounded-3xl transition-colors duration-400 ${activeTab === 'Data' ? 'bg-blue-900 text-white' : 'bg-gray-200'}`}
           onClick={() => setActiveTab('Data')}
         >
           Data
         </button>
         <button
-          className={`p-4 rounded-3xl transition-colors duration-400 ${activeTab === 'Chart' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          className={`p-4 rounded-3xl transition-colors duration-400 ${activeTab === 'Chart' ? 'bg-blue-900 text-white' : 'bg-gray-200'}`}
           onClick={() => setActiveTab('Chart')}
         >
           Chart

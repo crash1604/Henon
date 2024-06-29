@@ -17,7 +17,7 @@ function Menu({ selectedOption, setSelectedOption }) {
       <ul className="space-y-2">
         <li>
           <button
-            className={`w-full text-left p-4 rounded-3xl transition-all duration-400 ${selectedOption === 'Convert' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            className={`w-full text-left p-4 rounded-3xl transition-all duration-400 ${selectedOption === 'Convert' ? 'bg-blue-900 text-white' : 'bg-gray-200'}`}
             onClick={() => setSelectedOption('Convert')}
           >
             Convert
@@ -25,7 +25,7 @@ function Menu({ selectedOption, setSelectedOption }) {
         </li>
         <li>
           <button
-            className={`w-full text-left p-4 rounded-3xl transition-all duration-400 ${selectedOption === 'History' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            className={`w-full text-left p-4 rounded-3xl transition-all duration-400 ${selectedOption === 'History' ? 'bg-blue-900 text-white' : 'bg-gray-200'}`}
             onClick={() => setSelectedOption('History')}
           >
             History

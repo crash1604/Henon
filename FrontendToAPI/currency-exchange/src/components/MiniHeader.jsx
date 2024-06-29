@@ -46,7 +46,7 @@ const MiniHeader = ({ fromCurrency, setFromCurrency, toCurrency, setToCurrency, 
           </option>
         ))}
       </select>
-      <button className="bg-blue-500 text-white p-2 rounded-3xl transition-all duration-400" onClick={handleSwap}>
+      <button className="bg-blue-900 text-white p-2 rounded-3xl transition-all duration-400" onClick={handleSwap}>
         Swap
       </button>
       <select

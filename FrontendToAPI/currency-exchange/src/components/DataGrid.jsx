@@ -50,7 +50,7 @@ const DataGrid = ({ historicalData, toCurrency }) => {
         } else if (params.value < 0) {
           return 'flex items-center text-red-500';
         } else {
-          return 'flex items-center text-blue-500';
+          return 'flex items-center text-blue-900';
         }
       },
       cellRendererFramework: (params) => {
