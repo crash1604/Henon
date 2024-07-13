@@ -50,7 +50,7 @@ function History({ fromCurrency, toCurrency, historicalData }) {
     }, {});
 
   return (
-    <div className="bg-white p-4 md:h-screen rounded-2xl shadow">
+    <div className="bg-white p-4 rounded-2xl shadow">
       <h2 className="text-2xl font-bold mb-4">History</h2>
       <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-4">
         <button

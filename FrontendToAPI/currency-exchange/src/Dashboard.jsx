@@ -14,6 +14,8 @@ import Menu from './components/Menu';
 import Convert from './components/Convert';
 import History from './components/History';
 import MiniHeader from './components/MiniHeader';
+import News from './components/News';
+import AskAI from './components/AskAI';
 
 function Dashboard() {
   const [selectedOption, setSelectedOption] = useState('Convert');
@@ -28,7 +30,7 @@ function Dashboard() {
         setConversionRate(1);
         return;
       }
-      
+
       try {
         const response = await fetch(`https://api.frankfurter.app/latest?from=${fromCurrency}&to=${toCurrency}`);
         const data = await response.json();
@@ -69,9 +71,9 @@ function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <Header />
-      <div className="flex">
+      <div className="flex flex-grow overflow-hidden">
         <Menu selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-        <main className="flex-grow p-4">
+        <main className="flex-grow p-4 overflow-y-auto">
           <MiniHeader
             fromCurrency={fromCurrency}
             setFromCurrency={setFromCurrency}
@@ -79,6 +81,7 @@ function Dashboard() {
             setToCurrency={setToCurrency}
             conversionRate={conversionRate}
           />
+
           {selectedOption === 'Convert' && (
             <Convert
               fromCurrency={fromCurrency}
@@ -88,6 +91,12 @@ function Dashboard() {
           )}
           {selectedOption === 'History' && (
             <History fromCurrency={fromCurrency} toCurrency={toCurrency} historicalData={historicalData} />
+          )}
+          {selectedOption === 'News' && (
+            <News />
+          )}
+          {selectedOption === 'AskAI' && (
+            <AskAI />
           )}
         </main>
       </div>

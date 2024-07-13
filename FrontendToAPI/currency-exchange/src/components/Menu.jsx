@@ -13,7 +13,7 @@ import React from 'react';
 
 function Menu({ selectedOption, setSelectedOption }) {
   return (
-    <aside className="w-full md:w-1/6 p-4 bg-white rounded-b-2xl shadow md:h-screen">
+    <aside className="w-full md:w-1/6 p-4 bg-white rounded-b-2xl shadow h-dvh">
       <ul className="space-y-2">
         <li>
           <button
@@ -29,6 +29,22 @@ function Menu({ selectedOption, setSelectedOption }) {
             onClick={() => setSelectedOption('History')}
           >
             History
+          </button>
+        </li>
+        <li>
+          <button
+            className={`w-full text-left p-4 rounded-3xl transition-all duration-400 ${selectedOption === 'News' ? 'bg-blue-900 text-white' : 'bg-gray-200'}`}
+            onClick={() => setSelectedOption('News')}
+          >
+            News
+          </button>
+        </li>
+        <li>
+          <button
+            className={`w-full text-left p-4 rounded-3xl transition-all duration-400 ${selectedOption === 'AskAI' ? 'bg-blue-900 text-white' : 'bg-gray-200'}`}
+            onClick={() => setSelectedOption('AskAI')}
+          >
+            Ask AI
           </button>
         </li>
       </ul>

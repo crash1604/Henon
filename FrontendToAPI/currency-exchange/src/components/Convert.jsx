@@ -31,7 +31,7 @@ const Convert = ({ fromCurrency, toCurrency, conversionRate }) => {
   }, [amount, conversionRate]);
 
   return (
-    <div className="bg-white p-4 mt-2 md:h-screen rounded-2xl shadow">
+    <div className="bg-white p-4 mt-2 rounded-2xl shadow">
       <h2 className="text-2xl font-bold mb-4">Convert</h2>
       <span>{fromCurrency}</span>
       <input
