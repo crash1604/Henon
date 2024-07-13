@@ -10,6 +10,7 @@
 // Only supports 3 Currencies as specified by document
 
 import React, { useState, useEffect } from 'react';
+import { IoMdSwap } from "react-icons/io";
 
 const MiniHeader = ({ fromCurrency, setFromCurrency, toCurrency, setToCurrency, conversionRate }) => {
   const [currencies, setCurrencies] = useState({});
@@ -47,7 +48,7 @@ const MiniHeader = ({ fromCurrency, setFromCurrency, toCurrency, setToCurrency, 
         ))}
       </select>
       <button className="bg-blue-900 text-white p-2 rounded-3xl transition-all duration-400" onClick={handleSwap}>
-        Swap
+        <IoMdSwap />
       </button>
       <select
         className="bg-white text-black text-xl font-semibold p-2 rounded-3xl"
