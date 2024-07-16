@@ -25,9 +25,10 @@ const AskAI = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer sk-something'
+            'Authorization': 'Bearer ' 
           }
         }
+        
       );
       const aiMessage = { role: "assistant", content: result.data.choices[0].message.content };
       setConversation([...updatedConversation, aiMessage]);
@@ -40,20 +41,10 @@ const AskAI = () => {
   };
 
   return (
+    <>
     <div className="bg-white p-4 mt-2 md:h-screen rounded-2xl shadow">
       <h2 className="text-2xl font-bold mb-4">Ask AI Currency Assistant</h2>
-      <form onSubmit={handleSubmit} className="mb-4 flex w-full">
-        <input
-          type="text"
-          value={input}
-          onChange={handleInputChange}
-          placeholder="Ask about currency exchange..."
-          className=" p-2 mb-2 mr-2 border w-5/6 rounded-3xl"
-        />
-        <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-3xl">
-          Send
-        </button>
-      </form>
+
       <div className="space-y-4">
         {conversation.map((msg, index) => (
           <div key={index} className={`message ${msg.role}`}>
@@ -64,6 +55,21 @@ const AskAI = () => {
         ))}
       </div>
     </div>
+    <div className="fixed w-5/6 bottom-0 right-0 bg-white text-black p-4 rounded-3xl">
+    <form onSubmit={handleSubmit} className="mb-4 flex w-full">
+            <input
+            type="text"
+            value={input}
+            onChange={handleInputChange}
+            placeholder="Ask about currency exchange..."
+            className=" p-2 mb-2 mr-2 border w-5/6 rounded-3xl"
+            />
+            <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-3xl">
+            Send
+            </button>
+        </form>
+    </div>
+    </>
   );
 };
 

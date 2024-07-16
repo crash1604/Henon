@@ -13,7 +13,7 @@ import React from 'react';
 
 function Menu({ selectedOption, setSelectedOption }) {
   return (
-    <aside className="w-full md:w-1/6 max-h-full p-4 bg-white rounded-b-2xl shadow">
+    <aside className="lg:w-1/6 md:w-1/8 sm:w-1/12 max-h-full p-4 bg-white rounded-b-2xl shadow">
       <ul className="space-y-2">
         <li>
           <button

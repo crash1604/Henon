@@ -16,6 +16,7 @@ import History from './components/History';
 import MiniHeader from './components/MiniHeader';
 import News from './components/News';
 import AskAI from './components/AskAI';
+import Hamburger from 'hamburger-react';
 
 function Dashboard() {
   const [selectedOption, setSelectedOption] = useState('Convert');
@@ -23,6 +24,7 @@ function Dashboard() {
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [toCurrency, setToCurrency] = useState('CAD');
   const [historicalData, setHistoricalData] = useState([]);
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
   useEffect(() => {
     const fetchConversionRate = async () => {
@@ -70,10 +72,23 @@ function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      <Header />
+           
+     <header className="bg-blue-900 text-white p-4 flex justify-left items-center">
+ 
+     <Hamburger color='#ffff' toggled ={isHamburgerOpen} toggle={setIsHamburgerOpen} />
+       
+      <span className="text-3xl font-bold pl-4 pr-0 mr-0"> Currency Exchange Tracker </span>
+   
+    </header>
       <div className="flex flex-grow overflow-hidden">
-        <Menu selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-        <main className="flex-grow p-4 overflow-y-auto">
+      {isHamburgerOpen == true && (
+            <Menu selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+      )}
+        
+      
+      
+
+        <main className="p-4 overflow-y-auto">
           <MiniHeader
             fromCurrency={fromCurrency}
             setFromCurrency={setFromCurrency}
@@ -81,7 +96,7 @@ function Dashboard() {
             setToCurrency={setToCurrency}
             conversionRate={conversionRate}
           />
-
+          
           {selectedOption === 'Convert' && (
             <Convert
               fromCurrency={fromCurrency}
@@ -96,7 +111,10 @@ function Dashboard() {
             <News />
           )}
           {selectedOption === 'AskAI' && (
+            <>
             <AskAI />
+            
+            </>
           )}
         </main>
       </div>
