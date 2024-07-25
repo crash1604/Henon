@@ -25,7 +25,7 @@ const AskAI = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer sk-proj-i8wOPe2wCcRXzwafuKDrT3BlbkFJLyg58wVN0fUTmjpBHAIq' 
+            'Authorization': 'Bearer ' 
           }
         }
         // sk-proj-EZuUm8Hw2WFR6GQ8p6SxT3BlbkFJP9SQNg3Va89VYJDybGex
